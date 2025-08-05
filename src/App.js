@@ -15,9 +15,9 @@ export default function App() {
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
-    api.get('repositories').then(response => {
+    api.get('repositories').then((response) => {
       setRepositories(response.data);
-    })
+    });
   }, []);
 
   async function handleLikeRepository(id) {
@@ -25,7 +25,7 @@ export default function App() {
 
     const likedRepository = response.data;
 
-    const repositoriesUpdated = repositories.map(repository => {
+    const repositoriesUpdated = repositories.map((repository) => {
       if (repository.id === id) {
         return likedRepository;
       } else {
@@ -42,13 +42,13 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <FlatList
           data={repositories}
-          keyExtractor={repository => repository.id}
+          keyExtractor={(repository) => repository.id}
           renderItem={({ item: repository }) => (
             <View style={styles.repositoryContainer}>
               <Text style={styles.repository}>{repository.title}</Text>
 
               <View style={styles.techsContainer}>
-                {repository.techs.map(tech => (
+                {repository.techs.map((tech) => (
                   <Text key={tech} style={styles.tech}>
                     {tech}
                   </Text>
@@ -61,7 +61,7 @@ export default function App() {
                   testID={`repository-likes-${repository.id}`}
                 >
                   {repository.likes} curtidas
-            </Text>
+                </Text>
               </View>
 
               <TouchableOpacity
