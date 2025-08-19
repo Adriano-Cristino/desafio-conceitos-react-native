@@ -91,7 +91,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  preset: '@testing-library/react-native',
+  preset: "@testing-library/react-native",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -126,9 +126,7 @@ module.exports = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: [
-    "@testing-library/jest-native/extend-expect"
-  ],
+  setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect"],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
   // snapshotSerializers: [],
@@ -169,14 +167,14 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: {
-  //   "^.+\\.js$": "babel-jest"
-  // },
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  transformIgnorePatterns: [
+    "node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?|axios|axios-mock-adapter)/)",
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
