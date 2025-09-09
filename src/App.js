@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import api from './services/api';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import {
-  SafeAreaView,
   View,
   FlatList,
   Text,
@@ -37,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <SafeAreaProvider>
       <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
       <SafeAreaView style={styles.container}>
         <FlatList
@@ -60,7 +60,8 @@ export default function App() {
                   style={styles.likeText}
                   testID={`repository-likes-${repository.id}`}
                 >
-                  {repository.likes} curtidas
+                  {repository.likes}{' '}
+                  {repository.likes === 1 ? 'curtida' : 'curtidas'}
                 </Text>
               </View>
 
@@ -75,7 +76,7 @@ export default function App() {
           )}
         />
       </SafeAreaView>
-    </>
+    </SafeAreaProvider>
   );
 }
 

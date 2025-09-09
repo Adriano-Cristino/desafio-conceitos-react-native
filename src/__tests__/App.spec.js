@@ -30,21 +30,6 @@ apiMock.onGet("repositories").reply(200, [
   },
 ]);
 
-jest.mock(
-  "react-native/Libraries/Components/Touchable/TouchableOpacity.js",
-  () => {
-    const { TouchableHighlight } = require("react-native");
-
-    const MockTouchable = (props) => {
-      return <TouchableHighlight {...props} />;
-    };
-
-    MockTouchable.displayName = "TouchableOpacity";
-
-    return MockTouchable;
-  }
-);
-
 describe("Likes", () => {
   it("should add a like to the like counter of the repository", async () => {
     const { getByTestId } = render(<App />);
