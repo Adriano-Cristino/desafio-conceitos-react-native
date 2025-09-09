@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import api from './services/api';
 
 import {
@@ -9,31 +9,42 @@ import {
   StatusBar,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
 export default function App() {
   const [repositories, setRepositories] = useState([]);
 
   useEffect(() => {
-    api.get('repositories').then((response) => {
-      setRepositories(response.data);
-    });
+    api
+      .get('repositories')
+      .then((response) => {
+        setRepositories(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching repositories:', error);
+        // In a real app, you might want to show an error message to the user
+      });
   }, []);
 
   async function handleLikeRepository(id) {
-    const response = await api.post(`repositories/${id}/like`);
+    try {
+      const response = await api.post(`repositories/${id}/like`);
 
-    const likedRepository = response.data;
+      const likedRepository = response.data;
 
-    const repositoriesUpdated = repositories.map((repository) => {
-      if (repository.id === id) {
-        return likedRepository;
-      } else {
-        return repository;
-      }
-    });
+      const repositoriesUpdated = repositories.map((repository) => {
+        if (repository.id === id) {
+          return likedRepository;
+        } else {
+          return repository;
+        }
+      });
 
-    setRepositories(repositoriesUpdated);
+      setRepositories(repositoriesUpdated);
+    } catch (error) {
+      console.error('Error liking repository:', error);
+      // In a real app, you might want to show an error message to the user
+    }
   }
 
   return (
