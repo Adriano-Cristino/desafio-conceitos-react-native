@@ -63,9 +63,9 @@ describe("Likes", () => {
 
     await actWait();
 
-    expect(getByTestId(`repository-likes-${repositoryId}`).props.children).toEqual(
-      [1, ' curtidas']
-    );
+    expect(
+      getByTestId(`repository-likes-${repositoryId}`).props.children
+    ).toEqual([1, ' curtidas']);
 
     apiMock.onPost(`repositories/${repositoryId}/like`).reply(200, {
       id: repositoryId,
@@ -79,8 +79,8 @@ describe("Likes", () => {
 
     await actWait();
 
-    expect(getByTestId(`repository-likes-${repositoryId}`).props.children).toEqual(
-      [2, ' curtidas']
-    );
+    expect(
+      getByTestId(`repository-likes-${repositoryId}`).props.children
+    ).toEqual([2, ' curtidas']);
   });
 });
