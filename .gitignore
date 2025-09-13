@@ -57,3 +57,17 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Security and sensitive files
+.env
+.env.local
+.env.development
+.env.production
+*.p12
+*.mobileprovision
+google-services.json
+GoogleService-Info.plist
+*.jks
+*.p8
+.secrets/
+secrets.json
